@@ -1,5 +1,8 @@
+""" pascal traingle"""
+
 
 def pascal_triangle(n):
+    """ function that returns the pascal triangle"""
     if n < 1:
         return []
     if n == 1:
@@ -13,4 +16,3 @@ def pascal_triangle(n):
             row.append(triangle[i-1][j-1] + triangle[i-1][j])
         row.append(1)
         triangle.append(row)
-    return triangle
