@@ -5,6 +5,8 @@ if all the boxes can be opened"""
 
 def canUnlockAll(boxes):
     """ function that determines if all the boxes can be opened"""
+    if not boxes:
+        return False
     unlocked = [0] * len(boxes)
     unlocked[0] = 1
 
