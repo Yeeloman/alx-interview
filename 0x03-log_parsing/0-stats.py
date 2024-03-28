@@ -49,3 +49,6 @@ try:
             lines_printed = 0
 except Exception as e:
     pass
+
+finally:
+    print_infos(total_file_size, possible_states)
