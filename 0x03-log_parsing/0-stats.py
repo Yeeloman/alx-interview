@@ -18,20 +18,31 @@ possible_states: List[List[int]] = [
 
 
 def print_status(status_arr: List[List[int]]) -> None:
-    """print_status"""
+    """print_status
+    Args:
+        status_arr (List[List[int]]): status array
+    """
     for status in status_arr:
         if status[1] > 0:
             print(f"{status[0]}: {status[1]}")
 
 
 def print_infos(total_file_size: int, possible_states: List[List[int]]) -> None:  # noqa
-    """print_infos"""
+    """print_infos
+    Args:
+        total_file_size (int): total file size
+        possible_states (List[List[int]]): possible states
+    """
     print("File size: {}".format(total_file_size))
     print_status(possible_states)
 
 
 def update_possible_states(poss_stats: List[List[int]], matched_stat: int) -> None:  # noqa
-    """update_possible_states"""
+    """update_possible_states
+    Args:
+        poss_stats (List[List[int]]): possible states
+        matched_stat (int): matched status
+    """
     for stat in poss_stats:
         if stat[0] == matched_stat:
             stat[1] += 1
