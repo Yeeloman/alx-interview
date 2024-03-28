@@ -20,7 +20,8 @@ possible_states: List[List[int]] = [
 def print_status(status_arr: List[List[int]]) -> None:
     """print_status"""
     for status in status_arr:
-        print(f"{status[0]}: {status[1]}")
+        if status[1] > 0:
+            print(f"{status[0]}: {status[1]}")
 
 
 def print_infos(total_file_size: int, possible_states: List[List[int]]) -> None:  # noqa
