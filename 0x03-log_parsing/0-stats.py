@@ -8,7 +8,7 @@ import re
 REGEX_PATTERN = re.compile(r"(^(?:[0-9]{1,3}\.){3}[0-9]{1,3}) - \[\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}\.\d+\]\s\"GET \/projects\/260 HTTP\/1.1\"\s(\d{3})\s(\d+)$")  # noqa
 
 total_file_size: int = 0
-lines_printed: int = 0
+counter: int = 0
 possible_states: List[List[int]] = [
     [200, 0], [301, 0],
     [400, 0], [401, 0],
@@ -55,10 +55,12 @@ try:
         if not matched:
             continue
         total_file_size += int(matched.group(3))
+        counter += 1
         update_possible_states(possible_states, int(matched.group(2)))
-        if lines_printed < 10:
+        if counter == 10:
+            counter = 0
             print_infos(total_file_size, possible_states)
-            lines_printed = 0
+
 except Exception as e:
     pass
 
