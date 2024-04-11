@@ -31,6 +31,9 @@ def solveNqueen(n: int):
     negDiag = set()  # r-c
     resp = []
 
+    def print_sol(resp):
+        print(row for row in resp)
+
     def backtrack(r, solution):
         """implementation for backtrack algo"""
         if r == n:
@@ -52,7 +55,7 @@ def solveNqueen(n: int):
             negDiag.remove(r-c)
 
     backtrack(0, [])
-    print(resp)
+    print_sol(resp)
 
 
 if __name__ == "__main__":
