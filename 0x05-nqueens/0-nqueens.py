@@ -32,7 +32,8 @@ def solveNqueen(n: int):
     resp = []
 
     def print_sol(resp):
-        print(row for row in resp)
+        for row in resp:
+            print(row)
 
     def backtrack(r, solution):
         """implementation for backtrack algo"""
