@@ -14,14 +14,16 @@ def isNvalid():
 
     try:
         n = int(sys.argv[1])
-        if n < 4:
-            print('N must be at least 4')
-            sys.exit(1)
 
-        solveNqueen(n)
     except TypeError:
         print('N must be a number')
         sys.exit(1)
+
+    if n < 4:
+        print('N must be at least 4')
+        sys.exit(1)
+
+    solveNqueen(n)
 
 
 def solveNqueen(n: int):
