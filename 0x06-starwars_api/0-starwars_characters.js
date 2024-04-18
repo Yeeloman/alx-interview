@@ -2,23 +2,25 @@
 // star wars endpoint
 
 const request = require('request');
-const args = process.argv;
-const movieId = args[2];
-const urlMovie = `https://swapi-api.alx-tools.com/api/films/${movieId}`;
-
-request(urlMovie, (error, response, body) => {
-  if (error) {
-    console.error('Error:', error);
-  } else {
-    const charactersUrl = JSON.parse(body).characters;
-    charactersUrl.forEach(urlChar => {
-      request(urlChar, (error, respond, body) => {
-        if (error) {
-          console.error('Error:', error);
-        } else {
-          console.log(JSON.parse(body).name);
-        }
-      });
-    });
-  }
-});
+if (process.argv.length > 2) {
+  const url = `https://swapi-api.hbtn.io/api/films/${process.argv[2]}/`;
+  request(url, (err, _, body) => {
+    if (err) {
+      console.log('Error:', err);
+    }
+    const characters = JSON.parse(body).characters;
+    const charNames = characters.map(
+      url => new Promise((resolve, reject) => {
+        request(url, (rejErr, _, resBody) => {
+          if (rejErr) {
+            reject(rejErr);
+          }
+          resolve(JSON.parse(resBody).name);
+        });
+      })
+    );
+    Promise.all(charNames)
+      .then(names => console.log(names.join('\n')))
+      .catch(allErr => console.log(allErr));
+  });
+}
