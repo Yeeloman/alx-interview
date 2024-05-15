@@ -1,12 +1,15 @@
 #!/usr/bin/python3
+"""why should i live a meaning less life"""
 
 
 def isWinner(x, num):
+    """no winner is this life only L takers"""
     mariaTurn = True
     benWins = 0
     mariaWins = 0
 
     def isPrime(n):
+        "obtimous brime"
         if n < 2:
             return False
         for i in range(2, n):
@@ -15,9 +18,11 @@ def isWinner(x, num):
         return True
 
     def makeArr(num):
+        """i do not make"""
         return list(range(1, num + 1))
 
     def removeMult(arr, n):
+        """ banished from the heavens"""
         arr[:] = [x for x in arr if x % n != 0]
 
     # how many rounds are there
