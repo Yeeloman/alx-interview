@@ -1,60 +1,37 @@
 #!/usr/bin/python3
-"""why should i live a meaning less life"""
+"""
+Define isWineer function
+"""
 
 
-def isWinner(x, num):
-    """no winner is this life only L takers"""
-    mariaTurn = True
-    benWins = 0
-    mariaWins = 0
+def primes(n):
+    """Return list of prime numbers between 1 and n inclusive
+          """
+    prime = []
+    sieve = [True] * (n + 1)
+    for p in range(2, n + 1):
+        if (sieve[p]):
+            prime.append(p)
+            for i in range(p, n + 1, p):
+                sieve[i] = False
+    return prime
 
-    if not num or not x:
+
+def isWinner(x, nums):
+    """
+    Determines winner of Prime Game
+       """
+    if x is None or nums is None or x == 0 or nums == []:
         return None
-
-    def isPrime(n):
-        "obtimous brime"
-        if n < 2:
-            return False
-        for i in range(2, n):
-            if n % i == 0:
-                return False
-        return True
-
-    def makeArr(num):
-        """i do not make"""
-        return list(range(1, num + 1))
-
-    def removeMult(arr, n):
-        """ banished from the heavens"""
-        arr[:] = [x for x in arr if x % n != 0]
-
-    # how many rounds are there
+    Maria = Ben = 0
     for i in range(x):
-        thisRoundArr = makeArr(num[i])
-        # loops for each round's array
-        for thisNum in thisRoundArr:
-            if mariaTurn:
-                if isPrime(thisNum):
-                    # thisRoundArr.remove(thisNum)
-                    removeMult(thisRoundArr, thisNum)
-                    mariaTurn = False
-                else:
-                    continue
-            else:
-                if isPrime(thisNum):
-                    # thisRoundArr.remove(thisNum)
-                    removeMult(thisRoundArr, thisNum)
-                    mariaTurn = True
-                else:
-                    continue
-        if mariaTurn:
-            mariaWins += 1
+        prime = primes(nums[i])
+        if len(prime) % 2 == 0:
+            Ben += 1
         else:
-            benWins += 1
-
-        if benWins == mariaWins:
-            return None
-        elif benWins > mariaWins:
-            return "Ben"
-        else:
-            return "Maria"
+            Maria += 1
+    if Maria > Ben:
+        return 'Maria'
+    elif Ben > Maria:
+        return 'Ben'
+    return None
