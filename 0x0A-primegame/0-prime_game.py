@@ -8,6 +8,9 @@ def isWinner(x, num):
     benWins = 0
     mariaWins = 0
 
+    if not num:
+        return None
+
     def isPrime(n):
         "obtimous brime"
         if n < 2:
