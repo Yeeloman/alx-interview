@@ -8,7 +8,7 @@ def isWinner(x, num):
     benWins = 0
     mariaWins = 0
 
-    if not num:
+    if not num or not x:
         return None
 
     def isPrime(n):
